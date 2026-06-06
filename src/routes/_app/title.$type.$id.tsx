@@ -33,7 +33,7 @@ function TitlePage() {
 }
 
 function Inner({ opts, type, id }: { opts: any; type: "movie" | "tv"; id: number }) {
-  const { data } = useSuspenseQuery(opts);
+  const { data } = useSuspenseQuery(opts) as { data: any };
   const d = data.detail;
   const trailer = data.videos.find((v: any) => v.site === "YouTube" && v.type === "Trailer");
   const bg = backdropUrl(d.backdrop_path);
