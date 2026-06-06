@@ -14,16 +14,237 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_chat_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      curated_movies: {
+        Row: {
+          added_by: string | null
+          created_at: string
+          genres: string[] | null
+          id: string
+          media_type: string
+          poster_path: string | null
+          rating: number | null
+          title: string
+          tmdb_id: number | null
+          watch_url: string | null
+          year: number | null
+        }
+        Insert: {
+          added_by?: string | null
+          created_at?: string
+          genres?: string[] | null
+          id?: string
+          media_type?: string
+          poster_path?: string | null
+          rating?: number | null
+          title: string
+          tmdb_id?: number | null
+          watch_url?: string | null
+          year?: number | null
+        }
+        Update: {
+          added_by?: string | null
+          created_at?: string
+          genres?: string[] | null
+          id?: string
+          media_type?: string
+          poster_path?: string | null
+          rating?: number | null
+          title?: string
+          tmdb_id?: number | null
+          watch_url?: string | null
+          year?: number | null
+        }
+        Relationships: []
+      }
+      direct_messages: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: string
+          is_surprise: boolean
+          read_at: string | null
+          receiver_id: string
+          sender_id: string
+          shared_poster: string | null
+          shared_title: string | null
+          shared_tmdb_id: number | null
+          shared_type: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_surprise?: boolean
+          read_at?: string | null
+          receiver_id: string
+          sender_id: string
+          shared_poster?: string | null
+          shared_title?: string | null
+          shared_tmdb_id?: number | null
+          shared_type?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_surprise?: boolean
+          read_at?: string | null
+          receiver_id?: string
+          sender_id?: string
+          shared_poster?: string | null
+          shared_title?: string | null
+          shared_tmdb_id?: number | null
+          shared_type?: string | null
+        }
+        Relationships: []
+      }
+      friend_requests: {
+        Row: {
+          created_at: string
+          id: string
+          receiver_id: string
+          sender_id: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          receiver_id: string
+          sender_id: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          receiver_id?: string
+          sender_id?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      friendships: {
+        Row: {
+          created_at: string
+          id: string
+          user_a: string
+          user_b: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          user_a: string
+          user_b: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          user_a?: string
+          user_b?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          username: string
+          watching_title: string | null
+          watching_tmdb_id: number | null
+          watching_type: string | null
+          watching_updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          updated_at?: string
+          username: string
+          watching_title?: string | null
+          watching_tmdb_id?: number | null
+          watching_type?: string | null
+          watching_updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          username?: string
+          watching_title?: string | null
+          watching_tmdb_id?: number | null
+          watching_type?: string | null
+          watching_updated_at?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +371,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
