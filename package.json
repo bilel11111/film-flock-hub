@@ -1,5 +1,5 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "film-flock-hub",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -84,5 +84,6 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1"
-  }
+  },
+  "description": "Social film discovery workspace with title browsing, friends, messages, and recommendations."
 }
